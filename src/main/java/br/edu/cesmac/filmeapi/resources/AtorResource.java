@@ -1,12 +1,10 @@
 package br.edu.cesmac.filmeapi.resources;
 
 import java.net.URI;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,44 +16,43 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.edu.cesmac.filmeapi.domain.Filme;
-import br.edu.cesmac.filmeapi.service.FilmeService;
-import br.edu.cesmac.repository.FilmeRepository;
+import br.edu.cesmac.filmeapi.domain.Ator;
+import br.edu.cesmac.filmeapi.service.AtorService;
 
 @RestController
-@RequestMapping("/filmes")
-public class FilmeResource {
+@RequestMapping("/ators")
+public class AtorResource {
 	@Autowired
-	private FilmeService filmesService;
+	private AtorService atorsService;
 
 	@GetMapping(params = "titulo")
-	public List<Filme> pesquisarPorNome(@RequestParam String titulo) {
-		return filmesService.perquisarPorNome(titulo);
+	public List<Ator> pesquisarPorNome(@RequestParam String nome) {
+		return atorsService.perquisarPorNome(nome);
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> salvar(@RequestBody Filme filme) {
-		filmesService.salvar(filme);
+	public ResponseEntity<Void> salvar(@RequestBody Ator ator) {
+		atorsService.salvar(ator);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(filme.getIdFilme())
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ator.getIdAtor())
 				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@PutMapping
-	public void atualizar(@RequestBody Filme filme) {
-		filmesService.atualizar(filme);
+	public void atualizar(@RequestBody Ator ator) {
+		atorsService.atualizar(ator);
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public void deletar(@PathVariable("id") Long idFilme) throws Exception {
-		filmesService.deletarPorId(idFilme);
+	public void deletar(@PathVariable("id") Long idAtor) throws Exception {
+		atorsService.deletarPorId(idAtor);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Filme> buscarPorId(@PathVariable("id") Long idFilme) throws Exception {
-		Filme filme = filmesService.buscarPorId(idFilme);
-		return ResponseEntity.ok(filme);
+	public ResponseEntity<Ator> buscarPorId(@PathVariable("id") Long idAtor) throws Exception {
+		Ator ator = atorsService.buscarPorId(idAtor);
+		return ResponseEntity.ok(ator);
 	}
 
 }

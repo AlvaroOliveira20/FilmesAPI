@@ -10,11 +10,10 @@ import br.edu.cesmac.repository.FilmeRepository;
 
 @Service
 public class FilmeService {
-	
 
 	@Autowired
 	private FilmeRepository filmesRepository;
-	
+
 	public List<Filme> perquisarPorNome(String titulo) {
 		return filmesRepository.findByNome(titulo);
 	}
@@ -39,9 +38,8 @@ public class FilmeService {
 		return filmesRepository.findById(id).orElseThrow(() -> new Exception("Nenhum registro encontrado com o ID"));
 	}
 
-	 public List<Filme> listar() {
-		 return filmesRepository.findAll();
-		 }
-
+	public List<Filme> listar() {
+		return filmesRepository.findAll();
+	}
 
 }

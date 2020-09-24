@@ -17,23 +17,21 @@ public class Filme {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idFilme;
-	@NotEmpty (message = "O nome é obrigatório")
+	@NotEmpty(message = "O nome é obrigatório")
 	private String titulo;
-	@NotEmpty (message = "Data de lançamento é obrigatório")
+	@NotEmpty(message = "Data de lançamento é obrigatório")
 	private Date dataLancamento;
-	@NotEmpty (message = "Sinopse é obrigatório")
+	@NotEmpty(message = "Sinopse é obrigatório")
 	private String sinopse;
 	private Long genero_id;
-	@JsonIgnoreProperties ("filme")
-	@OneToOne (mappedBy = "filme")
-	@NotEmpty (message = "É obrigatório informar o gênero do filme")
+	@JsonIgnoreProperties("filme")
+	@OneToOne(mappedBy = "filme")
+	@NotEmpty(message = "É obrigatório informar o gênero do filme")
 	private Genero genero;
-	@JsonIgnoreProperties ("filme" )
-	@OneToMany (mappedBy = "filme")
-	@NotEmpty (message = "É obrigatório informar os atores do filme")
+	@JsonIgnoreProperties("filme")
+	@OneToMany(mappedBy = "filme")
+	@NotEmpty(message = "É obrigatório informar os atores do filme")
 	private Ator ator;
-
-	
 
 	public Filme(Long idFilme, String titulo, Date dataLancamento, String sinopse, Long genero_id) {
 		this.idFilme = idFilme;
@@ -41,7 +39,7 @@ public class Filme {
 		this.dataLancamento = dataLancamento;
 		this.sinopse = sinopse;
 		this.genero_id = genero_id;
-		
+
 	}
 
 	public Long getIdFilme() {
@@ -84,5 +82,4 @@ public class Filme {
 		this.genero_id = genero_id;
 	}
 
-	
 }

@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
@@ -12,13 +13,15 @@ public class Ator {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAtor;
+	@NotEmpty(message = "O nome é obrigatório")
 	private String nome;
+	@NotEmpty(message = "A data de nascimento é obrigatória")
 	private String dataNascimento;
+	@NotEmpty(message = "Informar o sexo é obrigatório")
 	private String sexo;
+	@NotEmpty(message = "A biografia é obrigatória")
 	private String biografia;
-	@JsonIgnoreProperties ("ator" )
-	@OneToMany (mappedBy = "ator")
-	private Filme filme;
+	
 	
 	
 	public Long getIdAtor() {

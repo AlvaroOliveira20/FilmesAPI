@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
@@ -12,12 +13,11 @@ public class Genero {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long genero_id;
+	@NotEmpty(message = "O nome é obrigatório")
 	private String nome;
+	@NotEmpty(message = "A descrição é obrigatória")
 	private String descricao;
-	@JsonIgnoreProperties ("filme" )
-
-	@OneToOne (mappedBy = "genero")
-	private Filme filme;
+	
 	
 	public Genero(Long genero_id, String nome, String descricao) {
 		super();

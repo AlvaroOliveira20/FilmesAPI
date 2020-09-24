@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.cesmac.filmeapi.domain.Filme;
+import br.edu.cesmac.filmeapi.domain.Genero;
 
 @Repository
-public interface FilmeRepository extends JpaRepository<Filme, Long> {
-	List<Filme> findByNome(String titulo);
+public interface GeneroRepository extends JpaRepository<Genero, Long> {
+	List<Genero> findByNome(String nome);
 }
